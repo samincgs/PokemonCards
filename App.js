@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, ScrollView, SafeAreaView, Platform } from "react-native";
+import Card from "./components/Card.js";
+
+import {
+  charmanderData,
+  pikachuData,
+  squirtleData,
+  bulbasaurData,
+} from "./data.js";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <Card {...charmanderData} />
+        <Card {...squirtleData} />
+        <Card {...bulbasaurData} />
+        <Card {...pikachuData} />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#f5f5f5",
+    ...Platform.select({
+      android: {
+        paddingTop: 25,
+      },
+    }),
   },
 });
